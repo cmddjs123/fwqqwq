@@ -1,13 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.env.token;
+const token = process.argv.length == 2 ? process.env.token : '';
 const welcomeChannelName = "입장";
 const byeChannelName = "퇴장";
-const welcomeChannelComment = "님 안녕하세요.";
-const byeChannelComment = "님 안녕히가세요.";
+const welcomeChannelComment = "입장.";
+const byeChannelComment = "퇴장.";
 
 client.on('ready', () => {
-  console.log('저승봇온라인.');
+  console.log('켰다.');
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -31,8 +31,8 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == '/초대링크') {
-    return message.reply('https://discord.gg/WbDXduu');
+  if(message.content == 'ㅎㄹ') {
+    return message.reply('홀리몰리과카몰리로봇카폴리씌잍!');
   }
 
   if(message.content.startsWith('/전체공지')) {
@@ -57,7 +57,7 @@ client.on('message', (message) => {
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 99까지의 숫자만 입력해주세요.")
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
